@@ -1,9 +1,0 @@
-target/
-.idea/
-*.iml
-.vscode/
-.env
-application-local.properties
-uploads/
-*.log
-.DS_Store
