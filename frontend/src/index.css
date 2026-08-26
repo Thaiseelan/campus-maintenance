@@ -1,0 +1,150 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --ink-navy: #16233F;
+    --paper: #EEF2F1;
+    --signal-amber: #F2A007;
+    --moss: #3F7A55;
+    --rust: #C1531B;
+    --slate: #4A5560;
+    --stamp-gray: #8A8F94;
+  }
+
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    font-family: 'IBM Plex Sans', sans-serif;
+    background-color: var(--paper);
+    color: var(--ink-navy);
+    line-height: 1.5;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  ::selection {
+    background-color: rgba(242, 160, 7, 0.25);
+  }
+}
+
+@layer components {
+  /* Blueprint grid background */
+  .blueprint-bg {
+    background-color: var(--paper);
+    background-image:
+      linear-gradient(rgba(22, 35, 63, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(22, 35, 63, 0.04) 1px, transparent 1px),
+      linear-gradient(rgba(22, 35, 63, 0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(22, 35, 63, 0.02) 1px, transparent 1px);
+    background-size: 80px 80px, 80px 80px, 16px 16px, 16px 16px;
+    background-position: -1px -1px, -1px -1px, -1px -1px, -1px -1px;
+  }
+
+  /* Navy panel blueprint */
+  .navy-blueprint {
+    background-color: var(--ink-navy);
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  /* Dashed separator (tear-line) */
+  .tear-line {
+    border-top: 2px dashed rgba(22, 35, 63, 0.15);
+  }
+
+  .tear-line-light {
+    border-top: 2px dashed rgba(255, 255, 255, 0.15);
+  }
+
+  /* Status stamp */
+  .status-stamp {
+    font-family: 'IBM Plex Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 10px;
+    border: 2px solid currentColor;
+    transform: rotate(-3deg);
+    font-size: 0.7rem;
+    line-height: 1;
+    position: relative;
+    white-space: nowrap;
+  }
+
+  .status-stamp::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 1px solid currentColor;
+    opacity: 0.3;
+    margin: 1px;
+    pointer-events: none;
+  }
+
+  /* Shimmer skeleton */
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      rgba(22, 35, 63, 0.04) 25%,
+      rgba(22, 35, 63, 0.08) 50%,
+      rgba(22, 35, 63, 0.04) 75%
+    );
+    background-size: 1000px 100%;
+    animation: shimmer 2s linear infinite;
+  }
+
+  /* Focus ring */
+  .focus-ring {
+    @apply outline-none focus-visible:ring-2 focus-visible:ring-signal-amber focus-visible:ring-offset-2 focus-visible:ring-offset-paper;
+  }
+
+  /* Card */
+  .card {
+    @apply bg-white border border-slate/15 rounded-lg shadow-sm;
+  }
+
+  .card-hover {
+    @apply transition-all duration-200 hover:shadow-md hover:border-slate/30;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(22, 35, 63, 0.2);
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(22, 35, 63, 0.35);
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
